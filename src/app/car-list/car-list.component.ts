@@ -2,6 +2,7 @@ import {Component, Inject, Input, OnInit} from '@angular/core';
 import {Cars} from "../mockdata/mock-carlist";
 import {Router} from "@angular/router";
 import {CarOverview} from "../model/CarOverview";
+import {CurrencyService} from "../core/service/currency.service";
 
 @Component({
   selector: 'app-car-list',
@@ -10,14 +11,16 @@ import {CarOverview} from "../model/CarOverview";
 })
 export class CarListComponent implements OnInit {
 
-  constructor( private router: Router) {
+  constructor( private router: Router, private currencyService:CurrencyService) {
     this.minDate = new Date();
   }
 
   cars = Cars;
   minDate: Date;
   carChoice : String = '';
-  currency : string = localStorage.getItem("currency") != null ? localStorage.getItem("currency")! : "USD";
+  get currency() : String {
+    return this.currencyService.get()
+  }
 
   ngOnInit(): void {
   }

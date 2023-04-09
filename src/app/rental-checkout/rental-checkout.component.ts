@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CarOverview} from "../model/CarOverview";
 import {ActivatedRoute} from "@angular/router";
+import {CurrencyService} from "../core/service/currency.service";
 
 @Component({
   selector: 'app-rental-checkout',
@@ -9,11 +10,13 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class RentalCheckoutComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, public currencyService : CurrencyService) { }
 
   securityDeposit : number = 0;
   rentedDays : number = 5;
-  currency : String = localStorage.getItem("currency") != null ? localStorage.getItem("currency")! : "USD";
+  get currency() : String {
+     return this.currencyService.get()
+  }
 
   car : CarOverview = {
     automatic: false,

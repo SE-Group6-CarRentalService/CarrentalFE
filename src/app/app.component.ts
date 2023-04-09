@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Currency} from "./mockdata/mock-currencies";
+import {CurrencyService} from "./core/service/currency.service";
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,14 @@ export class AppComponent {
 
   currency = Currency;
 
-  constructor() {
-    localStorage.setItem("currency", "USD")
+  get startCurrency() : String {
+    return this.currencyService.get()
   }
 
+  constructor(public currencyService : CurrencyService) {}
+
+
   setGlobalCurrency(selectedCurrency:String){
-    localStorage.setItem("currency", selectedCurrency.toString())
+    this.currencyService.set(selectedCurrency)
   }
 }
