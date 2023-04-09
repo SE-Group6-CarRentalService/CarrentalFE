@@ -17,6 +17,7 @@ export class CarListComponent implements OnInit {
   cars = Cars;
   minDate: Date;
   carChoice : String = '';
+  currency : string = localStorage.getItem("currency") != null ? localStorage.getItem("currency")! : "USD";
 
   ngOnInit(): void {
   }

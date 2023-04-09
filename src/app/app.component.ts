@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Currency} from "./mockdata/mock-currencies";
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,13 @@ import {Component} from '@angular/core';
 export class AppComponent {
   title = 'CarRentalFE';
 
-  constructor() { }
+  currency = Currency;
+
+  constructor() {
+    localStorage.setItem("currency", "USD")
+  }
+
+  setGlobalCurrency(selectedCurrency:String){
+    localStorage.setItem("currency", selectedCurrency.toString())
+  }
 }

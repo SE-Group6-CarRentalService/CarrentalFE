@@ -6,7 +6,7 @@
           <img src="assets/fastcar_logos/logo-no-background.svg" alt="FastCAR Logo" height="36">
         </a>
 
-        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+        <ul class="nav col-12 col-lg-auto my-2 justify-content-center align-items-center my-md-0 text-small">
           <li>
             <a href="#" class="button nav-link text-white iconGroup" routerLinkActive="activebutton">
               <span class="bi d-block mx-auto mb-1 material-icons md-24 iconColor">home</span>
@@ -36,6 +36,11 @@
               <span class="bi d-block mx-auto mb-1 material-icons md-24 iconColor">account_circle</span>
               Account
             </a>
+          </li>
+          <li>
+            <select class="form-select currencyStyle" #selectedCurrency aria-label="Default select example" (change)="setGlobalCurrency(selectedCurrency.value)">
+              <option *ngFor="let curr of currency" value="{{curr.abbreviation}}">{{curr.abbreviation}}</option>
+            </select>
           </li>
         </ul>
       </div>

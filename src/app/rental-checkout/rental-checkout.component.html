@@ -18,18 +18,18 @@
               <h6 class="my-0">{{car.model}}</h6>
               <small class="text-muted">Cost per day</small>
             </div>
-            <span class="text-muted">{{car.price}}{{currency}}/day</span>
+            <span class="text-muted">{{car.price}} {{currency}}/day</span>
           </li>
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h6 class="my-0">Security Deposit</h6>
               <small class="text-muted">Will be returned!</small>
             </div>
-            <span class="text-muted">{{calculateSecurityDeposit(car.price)}}{{currency}}</span>
+            <span class="text-muted">{{calculateSecurityDeposit(car.price)}} {{currency}}</span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>Total (USD)</span>
-            <strong>{{calculateTotal(car.price)}}{{currency}}</strong>
+            <strong>{{calculateTotal(car.price)}} {{currency}}</strong>
           </li>
         </ul>
 

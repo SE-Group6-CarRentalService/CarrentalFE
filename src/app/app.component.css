@@ -18,3 +18,21 @@ footer{
 .activebutton{
   color: pink;
 }
+
+.currencyStyle{
+  color: #FFFFFF;
+  background-color: #37AA4C;
+  border: #37AA4C;
+}
+
+select::-webkit-scrollbar {
+  width: 10px;
+}
+
+select::-webkit-scrollbar-track {
+  background-color: #37AA4C;
+}
+
+select::-webkit-scrollbar-thumb {
+  background-color: #32D150;
+}

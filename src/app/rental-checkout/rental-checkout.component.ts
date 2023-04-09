@@ -13,7 +13,7 @@ export class RentalCheckoutComponent implements OnInit {
 
   securityDeposit : number = 0;
   rentedDays : number = 5;
-  currency : String = '$';
+  currency : String = localStorage.getItem("currency") != null ? localStorage.getItem("currency")! : "USD";
 
   car : CarOverview = {
     automatic: false,
