@@ -3,6 +3,7 @@ import {Cars} from "../mockdata/mock-carlist";
 import {Router} from "@angular/router";
 import {CarOverview} from "../model/CarOverview";
 import {CurrencyService} from "../core/service/currency.service";
+import {CarListService} from "../core/service/car-list.service";
 
 @Component({
   selector: 'app-car-list',
@@ -11,11 +12,12 @@ import {CurrencyService} from "../core/service/currency.service";
 })
 export class CarListComponent implements OnInit {
 
-  constructor( private router: Router, private currencyService:CurrencyService) {
+  constructor( private router: Router, private currencyService:CurrencyService, private carListService:CarListService) {
     this.minDate = new Date();
   }
 
-  cars = Cars;
+  cars = this.carListService.getCars();
+
   minDate: Date;
   carChoice : String = '';
   get currency() : String {
@@ -35,6 +37,20 @@ export class CarListComponent implements OnInit {
         }
       })
     }
+  }
+
+  openLocation(car:CarOverview){
+    if (car.rented){
+      console.log("Already rented")
+    }else {
+      console.log(car)
+      this.router.navigate(['/locations'], {
+        queryParams: {
+          car : encodeURIComponent(JSON.stringify(car))
+        }
+      })
+    }
+
   }
 }
 

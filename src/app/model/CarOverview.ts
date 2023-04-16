@@ -5,4 +5,5 @@ export interface CarOverview {
   fuel:string;
   automatic:boolean;
   rented:boolean;
+  location:string;
 }

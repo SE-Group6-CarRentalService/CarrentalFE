@@ -24,7 +24,8 @@ export class RentalCheckoutComponent implements OnInit {
     mileage: 0,
     model: "",
     price: 0,
-    rented : false
+    rented : false,
+    location:""
   }
 
   ngOnInit(): void {

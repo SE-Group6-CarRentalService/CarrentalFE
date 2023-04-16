@@ -7,7 +7,8 @@ export const Cars : CarOverview[] = [
     mileage: 170000,
     price: 80,
     automatic:true,
-    rented: false
+    rented: false,
+    location:"48.158005,16.382509"
   },
   {
     model : "Opel Mokka",
@@ -15,7 +16,8 @@ export const Cars : CarOverview[] = [
     mileage: 12000,
     price: 90,
     automatic:false,
-    rented: true
+    rented: true,
+    location:"48.160460,16.384193"
   },
   {
     model : "Ford Fiesta",
@@ -23,6 +25,7 @@ export const Cars : CarOverview[] = [
     mileage: 30000,
     price: 60,
     automatic:false,
-    rented: false
+    rented: false,
+    location:"48.157690,16.379226"
   }
 ];

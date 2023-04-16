@@ -46,6 +46,10 @@
         <mat-list-item>Fuel: {{car.fuel}}</mat-list-item>
         <mat-list-item>Mileage: {{car.mileage}} km</mat-list-item>
         <mat-list-item *ngIf="car.automatic">Automatic</mat-list-item>
+
+        <mat-list-item>
+          <a class="material-icons md-24 iconColor ms-2" (click)="openLocation(car)">location_on</a>
+        </mat-list-item>
       </mat-list>
     </mat-expansion-panel>
   </div>
