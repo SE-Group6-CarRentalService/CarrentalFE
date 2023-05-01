@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  hereApiKey: "yfr--erOVaPei09YBHKmGPmwpnrLmAmgMetHAgiX25Y",
+  backendUrlPart1: "https://carrental-be-gr6.azurewebsites.net",
+  backendUrlPart2: "https://carrental-be-gr6.azurewebsites.net"
 };
 
 /*

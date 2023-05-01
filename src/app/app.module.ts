@@ -26,6 +26,7 @@ import {MatListModule} from "@angular/material/list";
 import {LoginActivate} from "./core/service/LoginActivate";
 import { UserSignupComponent } from './user-signup/user-signup.component';
 import { PaymentComponent } from './payment/payment.component';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 @NgModule({
   declarations: [
@@ -43,21 +44,22 @@ import { PaymentComponent } from './payment/payment.component';
     UserSignupComponent,
     PaymentComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    NgbModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatIconModule,
-    FormsModule,
-    MatExpansionModule,
-    MatListModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        NgbModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatIconModule,
+        FormsModule,
+        MatExpansionModule,
+        MatListModule,
+        MatSlideToggleModule
+    ],
   providers: [LoginActivate],
   bootstrap: [AppComponent]
 })

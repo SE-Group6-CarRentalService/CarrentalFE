@@ -1,27 +1,49 @@
 import { Injectable } from '@angular/core';
 import {CarOverview} from "../../model/CarOverview";
-import {Cars} from "../../mockdata/mock-carlist";
+import {environment} from "../../../environments/environment";
+import {HttpClient} from "@angular/common/http";
+import {Observable, Subject} from "rxjs";
+import {SliderService} from "./slider.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarListService {
 
-  constructor() { }
+  private backendUrl : string
 
-  getCars() : CarOverview[]{
-    return Cars
+  constructor(private http : HttpClient, private sliderService : SliderService) {
+    if(this.sliderService.get()){
+      this.backendUrl = environment.backendUrlPart2
+    }else {
+      this.backendUrl = environment.backendUrlPart1
+    }
+
   }
 
-  getCarLocations() : string{
-    let carList = this.getCars()
+
+
+  getCars() : Observable<CarOverview[]>{
+    let urlPath : string = "/v1/Cars"
+    console.log("UrlBackend: " + this.backendUrl)
+    return this.http.get<CarOverview[]>(this.backendUrl + urlPath)
+  }
+
+  getCarLocations() : Observable<string>{
+    let carList : CarOverview[]
     let carLocationString : string = ''
+    var subject = new Subject<string>();
 
-    carList.forEach( (car) => {
-      carLocationString = carLocationString.concat(car.location, ',')
+    this.getCars().subscribe(carListData => {
+      carList = carListData
+      console.log(carList)
+
+      carList.forEach( (car) => {
+        carLocationString = carLocationString.concat(car.location, ',')
+      })
+      subject.next(carLocationString)
     })
-
-    return carLocationString
+    return subject.asObservable()
   }
 
 }

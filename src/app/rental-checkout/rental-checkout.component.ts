@@ -19,13 +19,21 @@ export class RentalCheckoutComponent implements OnInit {
   }
 
   car : CarOverview = {
+    acceleration: 0,
     automatic: false,
+    cylinder: 0,
     fuel: "",
-    mileage: 0,
-    model: "",
-    price: 0,
-    rented : false,
-    location:""
+    horsepower: 0,
+    id: 0,
+    location: "",
+    mileageKm: 0,
+    modelName: "",
+    origin: "",
+    priceusd: 0,
+    rentalId: "",
+    weightInlbs: 0,
+    year: ""
+
   }
 
   ngOnInit(): void {

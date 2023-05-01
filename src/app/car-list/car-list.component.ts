@@ -16,7 +16,23 @@ export class CarListComponent implements OnInit {
     this.minDate = new Date();
   }
 
-  cars = this.carListService.getCars();
+  cars : CarOverview[] = [{
+    acceleration: 0,
+    automatic: false,
+    cylinder: 0,
+    fuel: "",
+    horsepower: 0,
+    id: 0,
+    location: "",
+    mileageKm: 0,
+    modelName: "",
+    origin: "",
+    priceusd: 0,
+    rentalId: "",
+    weightInlbs: 0,
+    year: ""
+
+  }]
 
   minDate: Date;
   carChoice : String = '';
@@ -25,10 +41,14 @@ export class CarListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.carListService.getCars().subscribe(carListData => {
+      console.log(carListData)
+      this.cars = carListData
+    })
   }
 
   checkout(car:CarOverview){
-    if (car.rented){
+    if (car.rentalId!="0"){
       console.log("Already rented")
     }else {
       this.router.navigate(['/checkout'], {
@@ -40,7 +60,7 @@ export class CarListComponent implements OnInit {
   }
 
   openLocation(car:CarOverview){
-    if (car.rented){
+    if (car.rentalId!="0"){
       console.log("Already rented")
     }else {
       console.log(car)

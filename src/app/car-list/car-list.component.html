@@ -28,14 +28,14 @@
     <mat-expansion-panel hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <span  alt="carLogo" height="32" class="material-icons rounded-circle flex-shrink-0 me-2" [ngStyle]="{'color': car.rented ? 'red' : 'green' }">
-        {{car.rented ? "event_busy" : "event_available"}}
+          <span  alt="carLogo" height="32" class="material-icons rounded-circle flex-shrink-0 me-2" [ngStyle]="{'color': car.rentalId!='0' ? 'red' : 'green' }">
+        {{car.rentalId!='0' ? "event_busy" : "event_available"}}
           </span>
-          <p class="mb-0">{{car.model}}</p>
+          <p class="mb-0">{{car.modelName}}</p>
         </mat-panel-title>
         <div class="align-content-end">
           <mat-panel-description >
-            {{car.price}} {{currency}}/day
+            {{car.priceusd}} {{currency}}/day
             <a class="material-icons md-24 iconColor ms-2" (click)="checkout(car)">shopping_cart</a>
           </mat-panel-description>
         </div>
@@ -44,7 +44,7 @@
       </mat-expansion-panel-header>
       <mat-list>
         <mat-list-item>Fuel: {{car.fuel}}</mat-list-item>
-        <mat-list-item>Mileage: {{car.mileage}} km</mat-list-item>
+        <mat-list-item>Mileage: {{car.mileageKm}} km</mat-list-item>
         <mat-list-item *ngIf="car.automatic">Automatic</mat-list-item>
 
         <mat-list-item>

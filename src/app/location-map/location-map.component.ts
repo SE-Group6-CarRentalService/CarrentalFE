@@ -15,13 +15,21 @@ export class LocationMapComponent implements OnInit {
   constructor(private route: ActivatedRoute, private locationService : LocationMappingService, private carListService:CarListService) { }
 
   car : CarOverview = {
+    acceleration: 0,
     automatic: false,
+    cylinder: 0,
     fuel: "",
-    mileage: 0,
-    model: "",
-    price: 0,
-    rented : false,
-    location:""
+    horsepower: 0,
+    id: 0,
+    location: "",
+    mileageKm: 0,
+    modelName: "",
+    origin: "",
+    priceusd: 0,
+    rentalId: "",
+    weightInlbs: 0,
+    year: ""
+
   }
 
   imageBlobUrl: string | ArrayBuffer | null = null;
@@ -54,9 +62,14 @@ export class LocationMapComponent implements OnInit {
 
       if (this.car == null){
         console.log("All Location")
-        let cars : string = this.carListService.getCarLocations()
-        console.log(cars)
-        this.getCarListLocationImage(cars)
+        let cars : string = ""
+        this.carListService.getCarLocations().subscribe(
+          (carLocations) => {
+            cars = carLocations
+            this.getCarListLocationImage(cars)
+          }
+        )
+
       }else {
         console.log("Car Location")
         this.getCarLocationImage()

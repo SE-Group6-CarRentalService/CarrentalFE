@@ -1,6 +1,7 @@
-import {ElementRef, Injectable} from '@angular/core';
-import {map, Observable} from "rxjs";
+import {Injectable} from '@angular/core';
+import {Observable} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 export class LocationMappingService {
 
   zoomFactor : number = 16;
-  unsafeAPIkey:string = "yfr--erOVaPei09YBHKmGPmwpnrLmAmgMetHAgiX25Y";
+  hereAPIKey:string = environment.hereApiKey;
   apiUrl:string = "https://image.maps.ls.hereapi.com/mia/1.6/mapview";
   width:number = 1000;
   height:number = 500;
@@ -24,7 +25,7 @@ export class LocationMappingService {
     }
 
     const params = new HttpParams()
-      .set('apiKey',this.unsafeAPIkey)
+      .set('apiKey',this.hereAPIKey)
       .set('poi', pointsOfInterest)
       .set('z',this.zoomFactor)
       .set('w', this.width)
@@ -45,7 +46,7 @@ export class LocationMappingService {
     }
 
     const params = new HttpParams()
-      .set('apiKey',this.unsafeAPIkey)
+      .set('apiKey',this.hereAPIKey)
       .set('c', coordinates)
       .set('z',this.zoomFactor)
       .set('w', this.width)
