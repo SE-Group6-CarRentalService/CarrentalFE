@@ -3,6 +3,11 @@ footer{
   bottom:0;
   width:100%;
 }
+
+.body{
+  padding-bottom: 4rem;
+}
+
 .iconGroup{
   text-align: center;
 }

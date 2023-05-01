@@ -4,6 +4,7 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable, Subject} from "rxjs";
 import {SliderService} from "./slider.service";
+import {CurrencyService} from "./currency.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class CarListService {
 
   private backendUrl : string
 
-  constructor(private http : HttpClient, private sliderService : SliderService) {
+  constructor(private http : HttpClient,private currencyService : CurrencyService, private sliderService : SliderService) {
     if(this.sliderService.get()){
       this.backendUrl = environment.backendUrlPart2
     }else {
@@ -25,6 +26,7 @@ export class CarListService {
 
   getCars() : Observable<CarOverview[]>{
     let urlPath : string = "/v1/Cars"
+    let parameterCurrency : string = "?currency=" + this.currencyService.get()
     console.log("UrlBackend: " + this.backendUrl)
     return this.http.get<CarOverview[]>(this.backendUrl + urlPath)
   }
