@@ -10,3 +10,14 @@
 .container{
   padding-bottom: 12%;
 }
+
+.control-label.required:after {
+  color: #d00;
+  content: "*";
+  margin-left: 5px;
+  top:7px;
+}
+
+.error{
+  color: #dd0000;
+}

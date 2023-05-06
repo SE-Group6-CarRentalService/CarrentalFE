@@ -11,7 +11,7 @@ import {CurrencyService} from "./currency.service";
 })
 export class CarListService {
 
-  private backendUrl : string
+  private readonly backendUrl : string
 
   constructor(private http : HttpClient,private currencyService : CurrencyService, private sliderService : SliderService) {
     if(this.sliderService.get()){

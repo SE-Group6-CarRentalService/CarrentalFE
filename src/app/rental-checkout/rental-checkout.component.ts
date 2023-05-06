@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CarOverview} from "../model/CarOverview";
 import {ActivatedRoute} from "@angular/router";
 import {CurrencyService} from "../core/service/currency.service";
+import {Car} from "../mockdata/mock-carlist";
 
 @Component({
   selector: 'app-rental-checkout',
@@ -18,23 +19,7 @@ export class RentalCheckoutComponent implements OnInit {
      return this.currencyService.get()
   }
 
-  car : CarOverview = {
-    acceleration: 0,
-    automatic: false,
-    cylinder: 0,
-    fuel: "",
-    horsepower: 0,
-    id: 0,
-    location: "",
-    mileageKm: 0,
-    modelName: "",
-    origin: "",
-    priceusd: 0,
-    rentalId: "",
-    weightInlbs: 0,
-    year: ""
-
-  }
+  car : CarOverview = Car[0]
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((queryParams) => {

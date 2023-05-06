@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   hereApiKey: "yfr--erOVaPei09YBHKmGPmwpnrLmAmgMetHAgiX25Y",
   backendUrlPart1: "https://carrental-be-gr6.azurewebsites.net",
-  backendUrlPart2: "https://carrental-be-gr6.azurewebsites.net"
+  backendUrlPart2: "http://localhost:8080"
 };
 
 /*

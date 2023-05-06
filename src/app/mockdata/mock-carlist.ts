@@ -1,6 +1,21 @@
 import {CarOverview} from "../model/CarOverview";
 
-export const Cars : CarOverview[] = [
+export const Car : CarOverview[] = [{
+  acceleration: 0,
+  automatic: true,
+  cylinder: 4,
+  fuel: "diesel",
+  horsepower: 110,
+  id: 0,
+  location: "48.166654,15.621899",
+  mileageKm: 170000,
+  modelName: "Opel Astra",
+  origin: "USA",
+  priceusd: 80,
+  rentalId: "",
+  weightInlbs: 3200,
+  year: "2014"
+}
   // {
   //   model : "Opel Astra J",
   //   fuel: "Diesel",

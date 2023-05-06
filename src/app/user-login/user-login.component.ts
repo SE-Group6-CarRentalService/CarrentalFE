@@ -31,21 +31,16 @@ export class UserLoginComponent implements OnInit {
     if(this.loginForm.invalid)
       return;
 
-    this.authService.login({
-      email : this.loginForm.get('email')!.value,
-      password : this.loginForm.get('password')!.value
-    }).subscribe(
-      response => {
-        this.tokenService.saveToken(response);
-        this.router.navigate(['user']);
-      },
-      error => {
-        if (error.status === 400 && error.error) {
-          this.errorMessage = error.error.message;
-        }
-      }
-    );
+
+    let jwtToken = this.authService.login(
+      this.loginForm.get('email')!.value,
+      this.loginForm.get('password')!.value
+    ).subscribe();
+
+    console.log(jwtToken)
     }
+
+
 
     signUp(){
       this.router.navigate(['/sign-up'])

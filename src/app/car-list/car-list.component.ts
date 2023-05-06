@@ -1,5 +1,5 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
-import {Cars} from "../mockdata/mock-carlist";
+import {Component, OnInit} from '@angular/core';
+import {Car} from "../mockdata/mock-carlist";
 import {Router} from "@angular/router";
 import {CarOverview} from "../model/CarOverview";
 import {CurrencyService} from "../core/service/currency.service";
@@ -16,23 +16,7 @@ export class CarListComponent implements OnInit {
     this.minDate = new Date();
   }
 
-  cars : CarOverview[] = [{
-    acceleration: 0,
-    automatic: false,
-    cylinder: 0,
-    fuel: "",
-    horsepower: 0,
-    id: 0,
-    location: "",
-    mileageKm: 0,
-    modelName: "",
-    origin: "",
-    priceusd: 0,
-    rentalId: "",
-    weightInlbs: 0,
-    year: ""
-
-  }]
+  cars : CarOverview[] = Car
 
   minDate: Date;
   carChoice : String = '';

@@ -4,6 +4,7 @@ import {CarOverview} from "../model/CarOverview";
 import {LocationMappingService} from "../core/service/locationMapping.service";
 import {round} from "@popperjs/core/lib/utils/math";
 import {CarListService} from "../core/service/car-list.service";
+import {Car} from "../mockdata/mock-carlist";
 
 @Component({
   selector: 'app-location-map',
@@ -14,23 +15,7 @@ export class LocationMapComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private locationService : LocationMappingService, private carListService:CarListService) { }
 
-  car : CarOverview = {
-    acceleration: 0,
-    automatic: false,
-    cylinder: 0,
-    fuel: "",
-    horsepower: 0,
-    id: 0,
-    location: "",
-    mileageKm: 0,
-    modelName: "",
-    origin: "",
-    priceusd: 0,
-    rentalId: "",
-    weightInlbs: 0,
-    year: ""
-
-  }
+  car : CarOverview = Car[0]
 
   imageBlobUrl: string | ArrayBuffer | null = null;
 
