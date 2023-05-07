@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {AuthenticationDto} from "../model/authentication-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +9,15 @@ export class TokenService {
 
   constructor() { }
 
-  saveToken(authenticationDto : AuthenticationDto){
-    localStorage.setItem(this.key, JSON.stringify(authenticationDto));
+  saveToken(token : string){
+    localStorage.setItem(this.key, token);
   }
 
   removeToken(){
     localStorage.removeItem(this.key);
   }
 
-  getToken(): AuthenticationDto {
-    return JSON.parse(localStorage.getItem(this.key)!);
+  getToken(): string {
+    return localStorage.getItem(this.key) ?? '';
   }
 }

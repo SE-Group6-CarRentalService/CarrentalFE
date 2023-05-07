@@ -4,14 +4,19 @@
       <img class="mb-2" src="../assets/fastcar_logos/fastcar_logo.png" alt="FastCAR Logo" height="80">
       <h1 class="h3 mb-3 fw-semibold">Login</h1>
       <div class="form-floating">
-        <input type="email" class="form-control" formControlName="email" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Email address</label>
-        <div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div></div>
+        <input type="email" class="form-control" formControlName="email" id="floatingInput" placeholder="name@example.com" [ngClass]="displayFieldCss('email')">
+        <label *ngIf="!isFieldValid('email')" for="floatingInput">Email address</label>
+        <label *ngIf="isFieldValid('email')" for="floatingInput" class="error">
+          Valid email-address is required.
+        </label>
+      </div>
       <div class="form-floating">
-        <input type="password" class="form-control" formControlName="password" id="floatingPassword" placeholder="Password">
-        <label for="floatingPassword">Password</label>
-        <div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div></div>
-
+        <input type="password" class="form-control" formControlName="password" id="floatingPassword" placeholder="Password" [ngClass]="displayFieldCss('password')">
+        <label *ngIf="!isFieldValid('password')" for="floatingPassword">Password</label>
+        <label *ngIf="isFieldValid('password')" for="floatingPassword" class="error">
+          Valid password is required.
+        </label>
+      </div>
       <button class="w-100 btn btn-lg buttonColor mt-2 mb-1" type="submit">Login</button>
       <button class="w-100 btn btn-lg buttonColorSignUp" type="signUp" (click)="signUp()">Sign Up</button>
       <p class="mt-5 mb-3 text-muted">©2023</p>

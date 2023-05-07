@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../core/service/auth.service";
 import {Router} from "@angular/router";
 import {TokenService} from "../core/service/token.service";
@@ -14,12 +14,11 @@ export class UserLoginComponent implements OnInit {
   errorMessage = "";
 
   loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
   });
 
-  constructor(private fb:FormBuilder,
-              private authService : AuthService,
+  constructor(private authService : AuthService,
               private tokenService : TokenService,
               private router : Router) {
   }
@@ -28,22 +27,43 @@ export class UserLoginComponent implements OnInit {
   }
 
   login() {
-    if(this.loginForm.invalid)
-      return;
-
-
-    let jwtToken = this.authService.login(
-      this.loginForm.get('email')!.value,
-      this.loginForm.get('password')!.value
-    ).subscribe();
-
-    console.log(jwtToken)
+    if(this.loginForm.valid){
+      this.authService.login(
+        this.loginForm.get('email')!.value,
+        this.loginForm.get('password')!.value
+      ).subscribe(data => {
+        this.tokenService.saveToken(data.jwttoken)
+        this.router.navigate(['/user'])
+      });
+    }else{
+      this.validateAllFormFields(this.loginForm)
     }
+  }
 
-
-
-    signUp(){
+  signUp(){
       this.router.navigate(['/sign-up'])
-    }
+  }
+
+  isFieldValid(field: string) {
+    // @ts-ignore
+    return !this.loginForm.get(field).valid && this.loginForm.get(field).touched;
+  }
+
+  displayFieldCss(field: string) {
+    return {
+      'is-invalid': this.isFieldValid(field),
+    };
+  }
+
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
+    });
+  }
 
 }

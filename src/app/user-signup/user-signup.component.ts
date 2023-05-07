@@ -3,6 +3,7 @@ import {UserRegistrationInput} from "../model/UserRegistrationInput";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserRegistration} from "../model/UserRegistration";
 import {UserManagementService} from "../core/service/user-management.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-signup',
@@ -26,7 +27,7 @@ export class UserSignupComponent implements OnInit {
 
   })
 
-  constructor(private userManagementService : UserManagementService) { }
+  constructor(private userManagementService : UserManagementService, private router : Router) { }
 
   registrationInput : UserRegistrationInput = {
     password: "",
@@ -62,6 +63,7 @@ export class UserSignupComponent implements OnInit {
       console.log(userRegistration)
       let returnCode = this.userManagementService.registerUser(userRegistration).subscribe()
       console.log(returnCode)
+      this.router.navigate(['/login'])
 
     }else {
       this.validateAllFormFields(this.signupForm)
@@ -79,13 +81,13 @@ export class UserSignupComponent implements OnInit {
     };
   }
 
-  validateAllFormFields(formGroup: FormGroup) {         //{1}
-    Object.keys(formGroup.controls).forEach(field => {  //{2}
-      const control = formGroup.get(field);             //{3}
-      if (control instanceof FormControl) {             //{4}
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
         control.markAsTouched({ onlySelf: true });
-      } else if (control instanceof FormGroup) {        //{5}
-        this.validateAllFormFields(control);            //{6}
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
       }
     });
   }

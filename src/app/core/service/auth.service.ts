@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {LoginDto} from "../model/login-dto";
-import {AuthenticationDto} from "../model/authentication-dto";
-import {Observable} from "rxjs";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {CurrencyService} from "./currency.service";
 import {SliderService} from "./slider.service";
 import {environment} from "../../../environments/environment";
+import {JwtResponse} from "../model/jwt-response";
+import {TokenService} from "./token.service";
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,13 @@ export class AuthService {
 
   private readonly backendUrl : string
 
+  private jwtHelper = new JwtHelperService()
 
-  constructor(private http : HttpClient,private currencyService : CurrencyService, private sliderService : SliderService) {
+
+  constructor(private http : HttpClient,
+              private currencyService : CurrencyService,
+              private sliderService : SliderService,
+              private tokenService : TokenService) {
     if(this.sliderService.get()){
       this.backendUrl = environment.backendUrlPart2
     }else {
@@ -26,10 +31,24 @@ export class AuthService {
 
   login(email : string, password : string){
     const queryParams = "?email=" + encodeURIComponent(email) + "&password=" + encodeURIComponent(password)
-    return this.http.post<String>(this.backendUrl + '/v1/customers/login' + queryParams,{});
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept':'application/json',
+      'Authorization':'',
+      'Conncetion':'keep-alive'
+    })
+    const options = {headers: headers}
+
+    return this.http.post<JwtResponse>(this.backendUrl + '/v1/Customers/login' + queryParams,{},options);
   }
 
   isLoggedIn() : Boolean{
-    return false;
+    const token = this.tokenService.getToken()
+    if (token == '' || this.jwtHelper.isTokenExpired(token)){
+      console.log("no valid token found!")
+      return false
+    }else {
+      return true
+    }
   }
 }
