@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {TokenService} from "./token.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,8 @@ export class SliderService {
 
   set(slider : boolean){
     localStorage.setItem('project', JSON.stringify(slider))
+    localStorage.removeItem('token')
+    localStorage.removeItem('customerId');
   }
 
   get() : boolean{

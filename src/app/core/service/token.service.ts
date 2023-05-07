@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {UserManagementService} from "./user-management.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class TokenService {
 
   removeToken(){
     localStorage.removeItem(this.key);
+    localStorage.removeItem('customerId');
   }
 
   getToken(): string {

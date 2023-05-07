@@ -1,1 +1,92 @@
-<p>user-settings works!</p>
+<div class="container">
+  <main>
+    <div class="row g-5">
+      <div class="col-md-7 col-lg-8">
+        <form class="needs-validation" novalidate="" (submit)="changeUserData()" [formGroup]="userForm">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="firstName" class="control-label required">First name</label>
+              <input formControlName="firstName" type="text" class="form-control" id="firstName" placeholder="" value="" required="" [ngClass]="displayFieldCss('firstName')">
+              <div *ngIf="isFieldValid('firstName')" class="error">
+                Valid first name is required.
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="control-label required">Last name</label>
+              <input formControlName="lastName" type="text" class="form-control" id="lastName" placeholder="" value="" required="" [ngClass]="displayFieldCss('lastName')">
+              <div *ngIf="isFieldValid('lastName')" class="error">
+                Valid last name is required.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="passportId" class="control-label required">)Birthdate</label>
+              <input formControlName="passportId" type="id" class="form-control" id="passportId" placeholder="12345678" [ngClass]="displayFieldCss('passportId')">
+              <div *ngIf="isFieldValid('passportId')" class="error">
+                Please enter a valid ID for verification.
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="birthday" class="control-label required">Birthday</label>
+              <input formControlName="birthday" type="date" class="form-control" id="birthday" placeholder="01.01.2020" [ngClass]="displayFieldCss('birthday')">
+              <div *ngIf="isFieldValid('birthday')" class="error">
+                Please enter a valid ID for verification.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="control-label required">Email</label>
+              <input formControlName="email" type="email" class="form-control" id="email" placeholder="you@example.com" [ngClass]="displayFieldCss('email')">
+              <div *ngIf="isFieldValid('email')" class="error">
+                Please enter a valid email address for shipping updates.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="address" class="control-label required">Address</label>
+              <input formControlName="address" type="text" class="form-control" id="address" placeholder="Favoritenstraße 222" required="" [ngClass]="displayFieldCss('address')">
+              <div *ngIf="isFieldValid('address')" class="error">
+                Please enter your shipping address.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="address2" class="form-label">Address 2 <span class="text-muted">(Optional)</span></label>
+              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+            </div>
+
+            <div class="col-md-5">
+              <label for="country" class="control-label required">Country</label>
+              <input formControlName="country" type="text" class="form-control" id="country" placeholder="" required="" [ngClass]="displayFieldCss('country')">
+              <div *ngIf="isFieldValid('country')" class="error">
+                Please select a valid country.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="city" class="control-label required">City</label>
+              <input formControlName="city" type="text" class="form-control" id="city" placeholder="" required="" [ngClass]="displayFieldCss('city')">
+              <div *ngIf="isFieldValid('city')" class="error">
+                Please provide a valid state.
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="zip" class="control-label required">Zip</label>
+              <input formControlName="zip" type="text" class="form-control" id="zip" placeholder="" required="" [ngClass]="displayFieldCss('zip')">
+              <div *ngIf="isFieldValid('zip')" class="error">
+                Zip code required.
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <button class="w-100 btn buttonColor btn-lg" type="submit">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>

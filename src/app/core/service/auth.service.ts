@@ -34,8 +34,7 @@ export class AuthService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept':'application/json',
-      'Authorization':'',
-      'Conncetion':'keep-alive'
+      'Authorization':''
     })
     const options = {headers: headers}
 

@@ -27,6 +27,7 @@ import {LoginActivate} from "./core/service/LoginActivate";
 import { UserSignupComponent } from './user-signup/user-signup.component';
 import { PaymentComponent } from './payment/payment.component';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
         FormsModule,
         MatExpansionModule,
         MatListModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
+        MatProgressSpinnerModule
     ],
   providers: [LoginActivate],
   bootstrap: [AppComponent]

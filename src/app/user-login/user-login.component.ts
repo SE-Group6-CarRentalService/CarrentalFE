@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../core/service/auth.service";
 import {Router} from "@angular/router";
 import {TokenService} from "../core/service/token.service";
+import {UserManagementService} from "../core/service/user-management.service";
 
 @Component({
   selector: 'app-user-login',
@@ -20,6 +21,7 @@ export class UserLoginComponent implements OnInit {
 
   constructor(private authService : AuthService,
               private tokenService : TokenService,
+              private userManagementService : UserManagementService,
               private router : Router) {
   }
 
@@ -32,8 +34,10 @@ export class UserLoginComponent implements OnInit {
         this.loginForm.get('email')!.value,
         this.loginForm.get('password')!.value
       ).subscribe(data => {
+        console.log(JSON.stringify(data))
         this.tokenService.saveToken(data.jwttoken)
-        this.router.navigate(['/user'])
+        this.userManagementService.saveUser(data.customerId)
+        this.router.navigate(['/rentals'])
       });
     }else{
       this.validateAllFormFields(this.loginForm)

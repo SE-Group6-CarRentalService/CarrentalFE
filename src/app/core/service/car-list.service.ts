@@ -31,6 +31,12 @@ export class CarListService {
     return this.http.get<CarOverview[]>(this.backendUrl + urlPath)
   }
 
+  getCar(carId : number) : Observable<CarOverview>{
+    let urlPath : string = "/v1/Cars/" + carId
+    console.log("UrlBackend: " + this.backendUrl)
+    return this.http.get<CarOverview>(this.backendUrl + urlPath)
+  }
+
   getCarLocations() : Observable<string>{
     let carList : CarOverview[]
     let carLocationString : string = ''

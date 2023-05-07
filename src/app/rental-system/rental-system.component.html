@@ -1,1 +1,32 @@
-<p>rental-system works!</p>
+<mat-spinner *ngIf="!allDataFetched"></mat-spinner>
+<div *ngIf="allDataFetched" class="px-3 py-2 mb-3">
+  <div class="list-group w-auto pb-1" *ngFor="let rental of rentalsReceived; index as IndexOfElement">
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span  alt="carLogo" height="32" class="material-icons rounded-circle flex-shrink-0 me-2">
+        {{rental.rented=='true' ? "event_busy" : "assignment_return"}}
+          </span>
+          <p class="mb-0">{{cars[IndexOfElement].modelName}}</p>
+        </mat-panel-title>
+        <div class="align-content-end">
+          <mat-panel-description >
+            <a class="material-icons md-24 iconColor ms-2" (click)="delete(rental)">delete</a>
+          </mat-panel-description>
+        </div>
+
+
+      </mat-expansion-panel-header>
+      <mat-list>
+        <mat-list-item>Rental Nr.: {{rental.id}}</mat-list-item>
+        <mat-list-item>Rental Start: {{rental.rentalDate}}</mat-list-item>
+        <mat-list-item>Rental Duration: {{rental.rentalDuration}}</mat-list-item>
+        <mat-list-item *ngIf="rental.rented=='false'">Rental Return Date: {{rental.returnDate}}</mat-list-item>
+        <mat-list-item>Total Price: {{rental.totalCost}} {{currency}}</mat-list-item>
+        <mat-list-item *ngIf="rental.rented == 'true'">
+          <a class="material-icons md-24 iconColor" (click)="returnCar(rental)">assignment_return</a>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+  </div>
+</div>

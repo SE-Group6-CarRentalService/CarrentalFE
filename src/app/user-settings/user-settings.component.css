@@ -1,0 +1,26 @@
+.buttonColor{
+  background: #37AA4C;
+  color: #FFFFFF;
+}
+
+.textColor{
+  color: #37AA4C;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.control-label.required:after {
+  color: #d00;
+  content: "*";
+  margin-left: 5px;
+  top:7px;
+}
+
+.error{
+  color: #dd0000;
+}

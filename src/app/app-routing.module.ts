@@ -22,7 +22,7 @@ const routes:Routes = [
   {path: 'user', component: UserSettingsComponent, canActivate:[LoginActivate]},
   {path: 'login', component: UserLoginComponent},
   {path: 'sign-up', component: UserSignupComponent},
-  {path: 'checkout', component: RentalCheckoutComponent},
+  {path: 'checkout', component: RentalCheckoutComponent, canActivate:[LoginActivate]},
   {path: 'faq', component: FaqComponent},
   {path: 'about', component: AboutComponent},
   {path: 'privacy', component: PrivacyPolicyComponent}
