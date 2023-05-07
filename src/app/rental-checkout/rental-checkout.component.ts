@@ -93,12 +93,12 @@ export class RentalCheckoutComponent implements OnInit {
 
   calculateSecurityDeposit(costPerDay:number):number{
     const rate = 2
-    this.securityDeposit = costPerDay * rate
+    this.securityDeposit = Math.round(costPerDay * rate * 100) / 100
     return this.securityDeposit
   }
 
   calculateTotal(costPerDay:number){
-    return this.securityDeposit + costPerDay * this.rentedDays
+    return Math.round((this.securityDeposit + costPerDay * this.rentedDays) * 100)/ 100
   }
 
   checkout(){

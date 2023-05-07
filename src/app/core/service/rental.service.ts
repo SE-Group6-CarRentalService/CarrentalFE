@@ -29,6 +29,7 @@ export class RentalService {
 
   rentalCheckout(rentalCheckout : RentalCheckout){
     const token : string = this.tokenService.getToken()
+    const queryParams = "?currency=" + this.currencyService.get()
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -36,7 +37,7 @@ export class RentalService {
       'Authorization':'Bearer ' + token
     })
     const options = {headers: headers}
-    return this.http.post<RentalCheckout>(this.backendUrl + '/v1/rentals' ,rentalCheckout,options);
+    return this.http.post<RentalCheckout>(this.backendUrl + '/v1/rentals' + queryParams,rentalCheckout,options);
   }
 
   getRentals(){

@@ -28,7 +28,7 @@ export class CarListService {
     let urlPath : string = "/v1/Cars"
     let parameterCurrency : string = "?currency=" + this.currencyService.get()
     console.log("UrlBackend: " + this.backendUrl)
-    return this.http.get<CarOverview[]>(this.backendUrl + urlPath)
+    return this.http.get<CarOverview[]>(this.backendUrl + urlPath + parameterCurrency)
   }
 
   getCar(carId : number) : Observable<CarOverview>{
