@@ -2,5 +2,5 @@ export const environment = {
   production: true,
   hereApiKey: "yfr--erOVaPei09YBHKmGPmwpnrLmAmgMetHAgiX25Y",
   backendUrlPart1: "https://carrental-be-gr6.azurewebsites.net",
-  backendUrlPart2: "http://localhost:8080"
+  backendUrlPart2: "https://carrental-be-microservice.azurewebsites.net"
 };
